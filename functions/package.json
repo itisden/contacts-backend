@@ -1,14 +1,16 @@
 {
   "name": "functions",
   "scripts": {
-    "lint": "eslint --ext .js,.ts .",
+    "lint": "npm run format:check && eslint --ext .js,.ts .",
     "build": "tsc",
     "build:watch": "tsc --watch",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "format:check": "npx prettier . --check",
+    "prepare": "husky"
   },
   "engines": {
     "node": "18"
@@ -23,9 +25,16 @@
     "@typescript-eslint/parser": "^5.12.0",
     "eslint": "^8.9.0",
     "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.25.4",
     "firebase-functions-test": "^3.1.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "3.3.3",
     "typescript": "^4.9.0"
   },
-  "private": true
+  "private": true,
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  }
 }
