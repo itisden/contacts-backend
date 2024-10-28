@@ -9,8 +9,7 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "format:check": "npx prettier . --check",
-    "prepare": "husky"
+    "format:check": "npx prettier . --check"
   },
   "engines": {
     "node": "18"
