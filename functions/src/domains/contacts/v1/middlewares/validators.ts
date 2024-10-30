@@ -24,7 +24,7 @@ export const validateIdParam = param("id")
   .notEmpty()
   .withMessage("Contact ID is required.");
 
-export const createContactValidation = [
+export const createContactValidator = [
   body("username")
     .isString()
     .bail()
@@ -33,7 +33,7 @@ export const createContactValidation = [
       "Username is required and must be between 3 and 20 characters.",
     )
     .escape(),
-  body("fullname")
+  body("fullName")
     .isString()
     .bail()
     .isLength(fullnameLength)
@@ -41,7 +41,7 @@ export const createContactValidation = [
       "Fullname is required and must be between 3 and 50 characters.",
     )
     .escape(),
-  body("phone")
+  body("phoneNumber")
     .isString()
     .bail()
     .isLength(phoneLength)
@@ -50,7 +50,7 @@ export const createContactValidation = [
   validateCreateUser,
 ];
 
-export const updateContactValidation = [
+export const updateContactValidator = [
   validateIdParam,
   body("username")
     .optional()
@@ -59,14 +59,14 @@ export const updateContactValidation = [
     .isLength(usernameLength)
     .escape()
     .withMessage("Username must be a string and between 3 and 20 characters."),
-  body("fullname")
+  body("fullName")
     .optional()
     .isString()
     .bail()
     .isLength(fullnameLength)
     .escape()
     .withMessage("Fullname must be a string and between 3 and 50 characters."),
-  body("phone")
+  body("phoneNumber")
     .optional()
     .isString()
     .bail()
