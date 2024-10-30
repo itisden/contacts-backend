@@ -13,4 +13,4 @@ apiApp.use("/api/v1/contacts", contactsRouter);
 apiApp.get("/status", (req, res) => res.send("OK"));
 apiApp.use(errorHandler);
 
-export const api = onRequest({ cors: true }, apiApp);
+export const app = onRequest({ cors: true }, apiApp);
