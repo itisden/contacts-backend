@@ -1,10 +1,13 @@
 import { onRequest } from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+// import * as logger from "firebase-functions/logger";
+import express, { Request, Response } from "express";
+import "express-async-errors";
+import bodyParser from "body-parser";
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+const api = express().use(bodyParser.json());
 
-export const helloWorld = onRequest((request, response) => {
-  logger.info("Hello logs!", { structuredData: true });
-  response.send("Hello from Firebase!");
+api.get("/v1", (req: Request, res: Response) => {
+  res.status(200).send("Hello from Firebase Express123!");
 });
+
+exports.api = onRequest(api);
