@@ -10,6 +10,7 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
 - [API Endpoints](#api-endpoints)
 - [Running Locally](#running-locally)
 - [Deployment](#deployment)
+- [Notes](#notes)
 
 ## Features
 
@@ -78,3 +79,7 @@ To run the functions locally:
 To deploy the functions:
 
     npm run deploy
+
+## Notes
+
+Path aliases in the code are supported via tsx-alias lib. Check https://github.com/firebase/firebase-tools/issues/986#issuecomment-1962253613 link
