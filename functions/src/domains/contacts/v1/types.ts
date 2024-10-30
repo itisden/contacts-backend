@@ -23,6 +23,9 @@ export interface IContactsService {
   getAllContacts(): Promise<IContact[]>;
   getContactById(id: string): Promise<IContact | null>;
   addContact(contact: ContactWithoutId): Promise<IContact>;
-  updateContact(id: string, contact: Partial<IContact>): Promise<IContact>;
+  updateContact(
+    id: string,
+    contact: Partial<ContactWithoutId>,
+  ): Promise<IContact>;
   deleteContact(id: string): Promise<void>;
 }

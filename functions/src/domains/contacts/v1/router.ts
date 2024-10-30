@@ -6,6 +6,7 @@ import {
   createContactValidator,
   updateContactValidator,
 } from "@/domains/contacts/v1/middlewares/validators";
+import { sanitizeContactPayload } from "@/domains/contacts/v1/middlewares/sanitizer";
 
 // eslint-disable-next-line new-cap
 const router = Router();
@@ -14,8 +15,18 @@ const contactsController = new ContactsController(contactsService);
 
 router.get("/", contactsController.getAllContacts);
 router.get("/:id", contactsController.getContactById);
-router.post("/", createContactValidator, contactsController.addContact);
-router.put("/:id", updateContactValidator, contactsController.updateContact);
+router.post(
+  "/",
+  createContactValidator,
+  sanitizeContactPayload,
+  contactsController.addContact,
+);
+router.put(
+  "/:id",
+  updateContactValidator,
+  sanitizeContactPayload,
+  contactsController.updateContact,
+);
 router.delete("/:id", contactsController.deleteContact);
 
 export default router;
