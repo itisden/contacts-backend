@@ -1,13 +1,16 @@
 import { onRequest } from "firebase-functions/v2/https";
-// import * as logger from "firebase-functions/logger";
-import express, { Request, Response } from "express";
-import "express-async-errors";
+import express from "express";
 import bodyParser from "body-parser";
+import errorHandler from "@/middlewares/errors";
+import contactsRouter from "@/domains/contacts/v1/router";
+import requestLogger from "@/middlewares/requestLog";
 
-const api = express().use(bodyParser.json());
+const api = express();
 
-api.get("/v1", (req: Request, res: Response) => {
-  res.status(200).send("Hello from Firebase Express123!");
-});
+api.use(bodyParser.json());
+api.use(requestLogger);
+api.use("/v1/contacts", contactsRouter);
+api.get("/status", (req, res) => res.send("OK"));
+api.use(errorHandler);
 
 exports.api = onRequest(api);
