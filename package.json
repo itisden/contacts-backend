@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-functions": "cd functions && npx eslint",
+    "format-functions": "cd functions && npx prettier --write",
     "prepare": "husky"
   },
   "keywords": [],
@@ -16,6 +18,9 @@
     "lint-staged": "^15.2.10"
   },
   "lint-staged": {
-    "**/*": []
+    "*.{js,ts}": [
+      "npm run format-functions",
+      "npm run lint-functions"
+    ]
   }
 }
