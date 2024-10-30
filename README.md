@@ -25,20 +25,21 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
 - **Firebase Functions**: Serverless functions for handling HTTP requests.
 - **Firestore**: Database for storing contact data.
 - **Node.js**: JavaScript runtime.
-- **Express** (Optional): Middleware for routing (used if you choose to add it).
+- **Express**: Middleware for routing.
 
 ## Setup
 
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/contacts-crud-api.git
-   cd contacts-crud-api
+   git clone https://github.com/itisden/contacts-backend.git
+   cd contacts-backend
    ```
 
 2. **Install dependencies:**
 
    ```bash
+   npm install
    cd functions
    npm install
    ```
@@ -46,7 +47,6 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
 3. **Set up Firebase CLI if you haven’t already:**
 
    ```bash
-   npm install firebase-tools -D
    npx firebase login
    npx firebase init
    ```
@@ -56,13 +56,16 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
 
 ## API Endpoints
 
-    Method Endpoint Description
-    GET /status Check API status
-    GET /v1/contacts Retrieve all contacts
-    GET /v1/contacts/:id Retrieve a single contact by ID
-    POST /v1/contacts Create a new contact
-    PUT /v1/contacts/:id Update an existing contact
-    DELETE /v1/contacts/:id Delete a contact
+Method Endpoint Description
+
+| Method | Endpoint               | Description                     |
+| ------ | ---------------------- | ------------------------------- |
+| GET    | **`/status`**          | Check API status                |
+| GET    | **`/v1/contacts`**     | Retrieve all contacts           |
+| GET    | **`/v1/contacts/:id`** | Retrieve a single contact by ID |
+| POST   | **`/v1/contacts`**     | Create a new contact            |
+| PUT    | **`/v1/contacts/:id`** | Update an existing contact      |
+| DELETE | **`/v1/contacts/:id`** | Delete a contact                |
 
 ## Running Locally
 
