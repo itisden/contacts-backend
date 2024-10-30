@@ -5,12 +5,12 @@ import errorHandler from "@/middlewares/errors";
 import contactsRouter from "@/domains/contacts/v1/router";
 import requestLogger from "@/middlewares/requestLog";
 
-const api = express();
+const apiApp = express();
 
-api.use(bodyParser.json());
-api.use(requestLogger);
-api.use("/v1/contacts", contactsRouter);
-api.get("/status", (req, res) => res.send("OK"));
-api.use(errorHandler);
+apiApp.use(bodyParser.json());
+apiApp.use(requestLogger);
+apiApp.use("/api/v1/contacts", contactsRouter);
+apiApp.get("/status", (req, res) => res.send("OK"));
+apiApp.use(errorHandler);
 
-exports.api = onRequest(api);
+export const api = onRequest(apiApp);
