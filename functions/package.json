@@ -1,6 +1,7 @@
 {
   "name": "functions",
   "scripts": {
+    "lint": "npm run format:check && npm run lint:check",
     "build": "tsc && tsc-alias",
     "build:watch": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
     "serve": "npm run build && firebase emulators:start --only functions",
@@ -10,8 +11,7 @@
     "logs": "firebase functions:log",
     "format:check": "npx prettier . --check",
     "format:fix": "npx prettier . --write",
-    "lint:check": "eslint --ext .js,.ts .",
-    "check": "npm run format:check && npm run lint:check"
+    "lint:check": "eslint --ext .js,.ts ."
   },
   "engines": {
     "node": "18"
