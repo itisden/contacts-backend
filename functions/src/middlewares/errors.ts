@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ApiError } from "@/utils/errors";
+import { ApiError, ValidationError } from "@/utils/errors";
 import * as logger from "firebase-functions/logger";
 
 const errorHandler = (
@@ -10,7 +10,9 @@ const errorHandler = (
 ) => {
   logger.error(err);
 
-  if (err instanceof ApiError) {
+  if (err instanceof ValidationError) {
+    return res.status(err.statusCode).send({ errors: err.errors });
+  } else if (err instanceof ApiError) {
     return res.status(err.statusCode).send({ message: err.message });
   }
 

@@ -1,3 +1,5 @@
+import { ValidationError as ExpressValidationError } from "express-validator";
+
 export class ApiError extends Error {
   public statusCode: number;
 
@@ -14,8 +16,14 @@ export class NotFoundError extends ApiError {
 }
 
 export class ValidationError extends ApiError {
-  constructor(message: string = "Invalid data provided") {
+  public errors: ExpressValidationError[];
+
+  constructor(
+    errors: ExpressValidationError[],
+    message: string = "Invalid data provided"
+  ) {
     super(message, 400);
+    this.errors = errors;
   }
 }
 
