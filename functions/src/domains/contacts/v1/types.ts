@@ -14,7 +14,7 @@ export interface IContactRepository {
   addContact(contact: ContactWithoutId): Promise<IContact>;
   updateContact(
     id: string,
-    contact: Partial<IContact>
+    contact: Partial<IContact>,
   ): Promise<IContact | null>;
   deleteContact(id: string): Promise<void>;
 }

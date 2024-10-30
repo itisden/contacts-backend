@@ -47,7 +47,7 @@ class ContactsController {
     try {
       const updatedContact = await this.contactsService.updateContact(
         req.params.id,
-        req.body
+        req.body,
       );
       res.json(updatedContact);
     } catch (e) {

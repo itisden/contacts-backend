@@ -7,6 +7,7 @@ import {
   updateContactValidation,
 } from "@/domains/contacts/v1/middlewares/validation";
 
+// eslint-disable-next-line new-cap
 const router = Router();
 const contactsService = new ContactsService(firebaseRepository);
 const contactsController = new ContactsController(contactsService);

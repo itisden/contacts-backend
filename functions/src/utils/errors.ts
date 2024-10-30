@@ -10,7 +10,7 @@ export class ApiError extends Error {
 }
 
 export class NotFoundError extends ApiError {
-  constructor(message: string = "Resource not found") {
+  constructor(message = "Resource not found") {
     super(message, 404);
   }
 }
@@ -20,7 +20,7 @@ export class ValidationError extends ApiError {
 
   constructor(
     errors: ExpressValidationError[],
-    message: string = "Invalid data provided"
+    message = "Invalid data provided",
   ) {
     super(message, 400);
     this.errors = errors;
@@ -28,7 +28,7 @@ export class ValidationError extends ApiError {
 }
 
 export class BadRequestError extends ApiError {
-  constructor(message: string = "Bad request") {
+  constructor(message = "Bad request") {
     super(message, 400);
   }
 }

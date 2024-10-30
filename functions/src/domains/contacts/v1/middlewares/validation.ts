@@ -5,7 +5,7 @@ import { ValidationError } from "@/utils/errors";
 export const validateCreateUser = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -30,7 +30,7 @@ export const createContactValidation = [
     .bail()
     .isLength(usernameLength)
     .withMessage(
-      "Username is required and must be between 3 and 20 characters."
+      "Username is required and must be between 3 and 20 characters.",
     )
     .escape(),
   body("fullname")
@@ -38,7 +38,7 @@ export const createContactValidation = [
     .bail()
     .isLength(fullnameLength)
     .withMessage(
-      "Fullname is required and must be between 3 and 50 characters."
+      "Fullname is required and must be between 3 and 50 characters.",
     )
     .escape(),
   body("phone")

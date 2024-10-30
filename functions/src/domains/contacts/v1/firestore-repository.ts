@@ -11,7 +11,7 @@ const FirestoreRepository: IContactRepository = {
   async getAllContacts(): Promise<IContact[]> {
     const snapshot = await contactsCollection.get();
     return snapshot.docs.map(
-      (doc) => ({ id: doc.id, ...doc.data() }) as IContact
+      (doc) => ({ id: doc.id, ...doc.data() }) as IContact,
     );
   },
 
@@ -27,7 +27,7 @@ const FirestoreRepository: IContactRepository = {
 
   async updateContact(
     id: string,
-    contact: Partial<IContact>
+    contact: Partial<IContact>,
   ): Promise<IContact | null> {
     const docRef = contactsCollection.doc(id);
     await docRef.update(contact);

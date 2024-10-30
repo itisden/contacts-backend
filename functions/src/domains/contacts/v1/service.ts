@@ -31,11 +31,11 @@ export class ContactService implements IContactsService {
 
   async updateContact(
     id: string,
-    contact: Partial<IContact>
+    contact: Partial<IContact>,
   ): Promise<IContact> {
     const updatedContact = await this.contactRepository.updateContact(
       id,
-      contact
+      contact,
     );
     if (!updatedContact) {
       throw new NotFoundError(`Contact ${id} not found`);
