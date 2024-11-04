@@ -1,0 +1,7 @@
+{
+  "prettier.configPath": "functions/.prettierrc",
+  "prettier.ignorePath": "functions/.prettierignore",
+  "eslint.workingDirectories": [
+    { "directory": "./functions", "changeProcessCWD": true }
+  ]
+}
