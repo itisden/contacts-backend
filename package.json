@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint-functions": "cd functions && npx eslint",
-    "format-functions": "cd functions && npx prettier --write",
+    "lint-functions": "cd functions && eslint",
+    "format-functions": "cd functions && prettier --write",
     "prepare": "husky"
   },
   "keywords": [],
