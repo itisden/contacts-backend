@@ -3,7 +3,7 @@ import {
   IContact,
   ContactWithoutId,
   IContactRepository,
-} from "@/domains/contacts/v1/types";
+} from "@/domains/v1/contacts/types";
 
 const contactsCollection = db.collection("contacts");
 

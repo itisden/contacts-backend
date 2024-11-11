@@ -3,8 +3,8 @@ import {
   IContact,
   ContactWithoutId,
   IContactsService,
-} from "@/domains/contacts/v1/types";
-import { NotFoundError } from "@/utils/errors";
+} from "@/domains/v1/contacts/types";
+import { NotFoundError } from "@/utils/exeptions";
 
 export class ContactService implements IContactsService {
   private contactRepository: IContactRepository;

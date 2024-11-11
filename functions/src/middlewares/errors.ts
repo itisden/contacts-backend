@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Request, Response, NextFunction } from "express";
-import { ApiError, ValidationError } from "@/utils/errors";
+import { ApiError, ValidationError } from "@/utils/exeptions";
 import * as logger from "firebase-functions/logger";
 
 const errorHandler = (

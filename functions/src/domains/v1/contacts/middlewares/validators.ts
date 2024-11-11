@@ -1,20 +1,6 @@
-import { validationResult, body, param } from "express-validator";
-import { Request, Response, NextFunction } from "express";
-import { ValidationError } from "@/utils/errors";
+import { body, param } from "express-validator";
+import validationChecker from "@/middlewares/validationChecker";
 
-export const validateCreateUser = (
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    throw new ValidationError(errors.array());
-  }
-  next();
-};
-
-// Validation length constraints
 const usernameLength = { min: 3, max: 20 };
 const fullnameLength = { min: 3, max: 50 };
 const phoneLength = { min: 8, max: 11 };
@@ -47,7 +33,7 @@ export const createContactValidator = [
     .isLength(phoneLength)
     .withMessage("Phone must be a valid number between 8 and 11 digits."),
   body("email").isEmail().withMessage("Email must be a valid email address."),
-  validateCreateUser,
+  validationChecker,
 ];
 
 export const updateContactValidator = [
@@ -76,5 +62,5 @@ export const updateContactValidator = [
     .optional()
     .isEmail()
     .withMessage("Email must be a valid email address."),
-  validateCreateUser,
+  validationChecker,
 ];

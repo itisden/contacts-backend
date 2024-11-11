@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { pick } from "lodash";
-import { ContactWithoutId } from "@/domains/contacts/v1/types";
+import { ContactWithoutId } from "@/domains/v1/contacts/types";
 
 export const sanitizeContactPayload = (
   req: Request,

@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { IContactsService } from "@/domains/contacts/v1/types";
-import { logger } from "firebase-functions/v2";
+import { IContactsService } from "@/domains/v1/contacts/types";
 
 class ContactsController {
   private contactsService: IContactsService;
@@ -35,7 +34,6 @@ class ContactsController {
 
   async addContact(req: Request, res: Response, next: NextFunction) {
     try {
-      logger.info("req.body", req.body);
       const newContact = await this.contactsService.addContact(req.body);
       res.status(201).json(newContact);
     } catch (e) {
