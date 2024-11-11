@@ -25,7 +25,7 @@ export const refreshTokenValidator = [
   validationChecker,
 ];
 
-export const idTokenValidator = async (
+export const authorizationValidator = async (
   req: Request,
   res: Response,
   next: NextFunction,

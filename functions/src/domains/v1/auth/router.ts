@@ -4,7 +4,7 @@ import AuthService from "@/domains/v1/auth/service";
 import {
   emaildAndPasswordValidator,
   refreshTokenValidator,
-  idTokenValidator,
+  authorizationValidator,
 } from "@/domains/v1/auth/middlewares/validators";
 import authApi from "@/domains/v1/auth/api";
 
@@ -17,7 +17,7 @@ router.post("/signin", emaildAndPasswordValidator, authController.signIn);
 router.post("/signup", authController.signUp);
 router.post(
   "/refresh-token",
-  idTokenValidator,
+  authorizationValidator,
   refreshTokenValidator,
   authController.refreshToken,
 );

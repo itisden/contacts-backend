@@ -7,14 +7,14 @@ import {
   updateContactValidator,
 } from "@/domains/v1/contacts/middlewares/validators";
 import { sanitizeContactPayload } from "@/domains/v1/contacts/middlewares/sanitizer";
-import { idTokenValidator } from "@/domains/v1/auth/middlewares/validators";
+import { authorizationValidator } from "@/domains/v1/auth/middlewares/validators";
 
 // eslint-disable-next-line new-cap
 const router = Router();
 const contactsService = new ContactsService(firebaseRepository);
 const contactsController = new ContactsController(contactsService);
 
-router.use(idTokenValidator);
+router.use(authorizationValidator);
 router.get("/", contactsController.getAllContacts);
 router.get("/:id", contactsController.getContactById);
 router.post(
