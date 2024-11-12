@@ -1,6 +1,7 @@
 import axios from "axios";
 import { firebaseConfig, isDev } from "@/config/env";
 import { IAuthApi } from "@/domains/v1/auth/types";
+import { ApiError } from "@/utils/exeptions";
 
 const hostname = {
   identityToolkit: isDev
@@ -52,6 +53,14 @@ export interface SignUpWithEmailAndPasswordResponse {
  * @see {@link https://firebase.google.com/docs/reference/rest/auth/#section-refresh-token}
  */
 
+const transformGoogleApiError = (error: any) => {
+  const identityError = error.response?.data?.error;
+  if (identityError) {
+    throw new ApiError(identityError.message, identityError.code);
+  }
+  throw error;
+};
+
 export interface RefreshTokenResponse {
   expires_in: string;
   token_type: string;
@@ -74,7 +83,9 @@ const authApi: IAuthApi = {
         password,
         returnSecureToken: true,
       },
-    }).then((response) => response.data);
+    })
+      .then((response) => response.data)
+      .catch(transformGoogleApiError);
   },
   signUpWithEmailAndPassword: async (
     email: string,
@@ -88,7 +99,9 @@ const authApi: IAuthApi = {
         password,
         returnSecureToken: true,
       },
-    }).then((response) => response.data);
+    })
+      .then((response) => response.data)
+      .catch(transformGoogleApiError);
   },
   refreshToken: async (refreshToken: string): Promise<RefreshTokenResponse> => {
     return axios({
@@ -98,7 +111,9 @@ const authApi: IAuthApi = {
         grant_type: "refresh_token",
         refresh_token: refreshToken,
       },
-    }).then((response) => response.data);
+    })
+      .then((response) => response.data)
+      .catch(transformGoogleApiError);
   },
 };
 
