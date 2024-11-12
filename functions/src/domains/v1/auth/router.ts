@@ -14,7 +14,7 @@ const authService = new AuthService(authApi);
 const authController = new AuthController(authService);
 
 router.post("/signin", emaildAndPasswordValidator, authController.signIn);
-router.post("/signup", authController.signUp);
+router.post("/signup", emaildAndPasswordValidator, authController.signUp);
 router.post(
   "/refresh-token",
   authorizationValidator,
