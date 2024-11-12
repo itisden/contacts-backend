@@ -16,7 +16,8 @@ class ContactsController {
 
   async getAllContacts(req: Request, res: Response, next: NextFunction) {
     try {
-      const contacts = await this.contactsService.getAllContacts();
+      const userId = req.user!.uid;
+      const contacts = await this.contactsService.getAllContacts(userId);
       res.json(contacts);
     } catch (e) {
       next(e);
@@ -25,7 +26,11 @@ class ContactsController {
 
   async getContactById(req: Request, res: Response, next: NextFunction) {
     try {
-      const contact = await this.contactsService.getContactById(req.params.id);
+      const userId = req.user!.uid;
+      const contact = await this.contactsService.getContactById(
+        userId,
+        req.params.id,
+      );
       res.json(contact);
     } catch (e) {
       next(e);
@@ -34,7 +39,11 @@ class ContactsController {
 
   async addContact(req: Request, res: Response, next: NextFunction) {
     try {
-      const newContact = await this.contactsService.addContact(req.body);
+      const userId = req.user!.uid;
+      const newContact = await this.contactsService.addContact(
+        userId,
+        req.body,
+      );
       res.status(201).json(newContact);
     } catch (e) {
       next(e);
@@ -43,7 +52,9 @@ class ContactsController {
 
   async updateContact(req: Request, res: Response, next: NextFunction) {
     try {
+      const userId = req.user!.uid;
       const updatedContact = await this.contactsService.updateContact(
+        userId,
         req.params.id,
         req.body,
       );
@@ -55,7 +66,8 @@ class ContactsController {
 
   async deleteContact(req: Request, res: Response, next: NextFunction) {
     try {
-      await this.contactsService.deleteContact(req.params.id);
+      const userId = req.user!.uid;
+      await this.contactsService.deleteContact(userId, req.params.id);
       res.status(204).send();
     } catch (e) {
       next(e);

@@ -33,7 +33,7 @@ export const authorizationValidator = async (
   const idToken = req.headers.authorization?.split("Bearer ")[1];
 
   if (!idToken) {
-    return next(new UnauthorizedError());
+    return next(new UnauthorizedError("Authorization token is required."));
   }
 
   try {
@@ -41,6 +41,6 @@ export const authorizationValidator = async (
     req.user = decodedToken;
     next();
   } catch (error) {
-    return next(new UnauthorizedError());
+    return next(new UnauthorizedError((error as Error).message));
   }
 };

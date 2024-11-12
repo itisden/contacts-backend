@@ -17,7 +17,9 @@ const errorHandler = (
     return res.status(err.statusCode).send({ message: err.message });
   }
 
-  return res.status(500).send({ message: "An unexpected error occurred" });
+  return res
+    .status(500)
+    .send({ message: err.message || "An unexpected error occurred" });
 };
 
 export default errorHandler;

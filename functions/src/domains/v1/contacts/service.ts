@@ -13,27 +13,32 @@ export class ContactService implements IContactsService {
     this.contactRepository = contactRepository;
   }
 
-  async getAllContacts(): Promise<IContact[]> {
-    return await this.contactRepository.getAllContacts();
+  async getAllContacts(userId: string): Promise<IContact[]> {
+    return await this.contactRepository.getAllContacts(userId);
   }
 
-  async getContactById(id: string): Promise<IContact> {
-    const contact = await this.contactRepository.getContactById(id);
+  async getContactById(userId: string, id: string): Promise<IContact> {
+    const contact = await this.contactRepository.getContactById(userId, id);
     if (!contact) {
       throw new NotFoundError(`Contact ${id} not found`);
     }
     return contact;
   }
 
-  async addContact(contact: ContactWithoutId): Promise<IContact> {
-    return await this.contactRepository.addContact(contact);
+  async addContact(
+    userId: string,
+    contact: ContactWithoutId,
+  ): Promise<IContact> {
+    return await this.contactRepository.addContact(userId, contact);
   }
 
   async updateContact(
+    userId: string,
     id: string,
     contact: Partial<IContact>,
   ): Promise<IContact> {
     const updatedContact = await this.contactRepository.updateContact(
+      userId,
       id,
       contact,
     );
@@ -43,8 +48,15 @@ export class ContactService implements IContactsService {
     return updatedContact;
   }
 
-  async deleteContact(id: string): Promise<void> {
-    await this.contactRepository.deleteContact(id);
+  async deleteContact(userId: string, id: string): Promise<IContact> {
+    const deletedContact = await this.contactRepository.deleteContact(
+      userId,
+      id,
+    );
+    if (!deletedContact) {
+      throw new NotFoundError(`Contact ${id} not found`);
+    }
+    return deletedContact;
   }
 }
 

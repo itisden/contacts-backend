@@ -26,5 +26,6 @@ module.exports = {
   rules: {
     "import/no-unresolved": 0,
     "require-jsdoc": "off",
+    "no-debugger": "off", // Added rule to allow debugger statements
   },
 };

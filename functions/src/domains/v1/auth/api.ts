@@ -4,10 +4,10 @@ import { IAuthApi } from "@/domains/v1/auth/types";
 
 const hostname = {
   identityToolkit: isDev
-    ? "http://localhost:9099/identitytoolkit.googleapis.com"
+    ? "http://127.0.0.1:9099/identitytoolkit.googleapis.com"
     : "https://identitytoolkit.googleapis.com",
   secureToken: isDev
-    ? "http://localhost:9099/securetoken.googleapis.com"
+    ? "http://127.0.0.1:9099/securetoken.googleapis.com"
     : "https://securetoken.googleapis.com",
 };
 
