@@ -1,21 +1,12 @@
 import axios from "axios";
-import { firebaseConfig, isDev } from "@/config/env";
+import { firebaseConfig } from "@/config/env";
 import { IAuthApi } from "@/domains/v1/auth/types";
 import { ApiError } from "@/utils/exeptions";
 
-const hostname = {
-  identityToolkit: isDev
-    ? "http://127.0.0.1:9099/identitytoolkit.googleapis.com"
-    : "https://identitytoolkit.googleapis.com",
-  secureToken: isDev
-    ? "http://127.0.0.1:9099/securetoken.googleapis.com"
-    : "https://securetoken.googleapis.com",
-};
-
 const authEndpoints = {
-  signInWithEmailAndPassword: `${hostname.identityToolkit}/v1/accounts:signInWithPassword?key=${firebaseConfig.apiKey}`,
-  signUpWithEmailAndPassword: `${hostname.identityToolkit}/v1/accounts:signUp?key=${firebaseConfig.apiKey}`,
-  refreshToken: `${hostname.secureToken}/v1/token?key=${firebaseConfig.apiKey}`,
+  signInWithEmailAndPassword: `${firebaseConfig.identityToolkitOrigin}/v1/accounts:signInWithPassword?key=${firebaseConfig.apiKey}`,
+  signUpWithEmailAndPassword: `${firebaseConfig.identityToolkitOrigin}/v1/accounts:signUp?key=${firebaseConfig.apiKey}`,
+  refreshToken: `${firebaseConfig.secureTokenOrigin}/v1/token?key=${firebaseConfig.apiKey}`,
 };
 
 /**
@@ -91,6 +82,7 @@ const authApi: IAuthApi = {
     email: string,
     password: string,
   ): Promise<SignUpWithEmailAndPasswordResponse> => {
+    debugger;
     return axios({
       method: "post",
       url: authEndpoints.signUpWithEmailAndPassword,

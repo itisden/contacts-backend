@@ -1,8 +1,5 @@
-import { defineString } from "firebase-functions/params";
-
 export const firebaseConfig = {
-  apiKey: defineString("API_KEY_FIREBASE").name,
+  apiKey: process.env.API_KEY_FIREBASE || "",
+  identityToolkitOrigin: process.env.IDENITY_TOOLKIT_ORIGIN || "",
+  secureTokenOrigin: process.env.SECURE_TOKEN_ORIGIN || "",
 };
-
-export const isDev = process.env.NODE_ENV === "development";
-export const isProd = !isDev;
