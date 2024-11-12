@@ -4,8 +4,8 @@ import AuthService from "@/domains/v1/auth/service";
 import {
   emaildAndPasswordValidator,
   refreshTokenValidator,
-  authorizationValidator,
-} from "@/domains/v1/auth/middlewares/validators";
+} from "@/domains/v1/auth/middlewares/requestValidators";
+import authorizationValidator from "@/domains/v1/auth/middlewares/authorizationValidator";
 import authApi from "@/domains/v1/auth/api";
 
 // eslint-disable-next-line new-cap

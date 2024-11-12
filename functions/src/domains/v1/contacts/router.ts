@@ -5,9 +5,9 @@ import firebaseRepository from "@/domains/v1/contacts/firestore-repository";
 import {
   createContactValidator,
   updateContactValidator,
-} from "@/domains/v1/contacts/middlewares/validators";
+} from "@/domains/v1/contacts/middlewares/requestValidators";
 import { sanitizeContactPayload } from "@/domains/v1/contacts/middlewares/sanitizer";
-import { authorizationValidator } from "@/domains/v1/auth/middlewares/validators";
+import authorizationValidator from "@/domains/v1/auth/middlewares/authorizationValidator";
 
 // eslint-disable-next-line new-cap
 const router = Router();
