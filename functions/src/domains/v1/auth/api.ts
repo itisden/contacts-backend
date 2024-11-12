@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import { firebaseConfig } from "@/config/env";
 import { IAuthApi } from "@/domains/v1/auth/types";
 import { ApiError } from "@/utils/exeptions";
@@ -44,10 +44,26 @@ export interface SignUpWithEmailAndPasswordResponse {
  * @see {@link https://firebase.google.com/docs/reference/rest/auth/#section-refresh-token}
  */
 
-const transformGoogleApiError = (error: any) => {
-  const identityError = error.response?.data?.error;
-  if (identityError) {
-    throw new ApiError(identityError.message, identityError.code);
+export interface GoogleApiErrorResponse {
+  error: {
+    message: string;
+    code: number;
+    errors: Array<{
+      message: string;
+      domain: string;
+      reason: string;
+    }>;
+    status: string;
+  };
+}
+
+const transformGoogleApiError = (error: unknown) => {
+  if (isAxiosError(error)) {
+    const identityError = (error.response?.data as GoogleApiErrorResponse)
+      ?.error;
+    if (identityError) {
+      throw new ApiError(identityError.message, identityError.code);
+    }
   }
   throw error;
 };

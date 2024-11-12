@@ -25,7 +25,8 @@ module.exports = {
   plugins: ["@typescript-eslint", "import"],
   rules: {
     "import/no-unresolved": 0,
-    "require-jsdoc": "off",
-    "no-debugger": "off", // Added rule to allow debugger statements
+    "require-jsdoc": 0,
+    "no-debugger": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
   },
 };
