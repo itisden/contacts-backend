@@ -27,7 +27,7 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
 
 - **Firebase Functions**: Serverless functions for handling HTTP requests.
 - **Firestore**: Database for storing contact data.
-- **Firestore authentication**: provides backend services to help authenticate users in your application
+- **Firestore Authentication (via [REST API](https://firebase.google.com/docs/reference/rest/auth))**: Provides backend services to help authenticate users in your application.
 - **Node.js**: JavaScript runtime.
 - **Express**: Middleware for routing.
 
