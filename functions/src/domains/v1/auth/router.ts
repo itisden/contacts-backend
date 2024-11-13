@@ -5,7 +5,6 @@ import {
   emaildAndPasswordValidator,
   refreshTokenValidator,
 } from "@/domains/v1/auth/middlewares/requestValidators";
-import authorizationValidator from "@/domains/v1/auth/middlewares/authorizationValidator";
 import authApi from "@/domains/v1/auth/api";
 
 // eslint-disable-next-line new-cap
@@ -17,7 +16,6 @@ router.post("/signin", emaildAndPasswordValidator, authController.signIn);
 router.post("/signup", emaildAndPasswordValidator, authController.signUp);
 router.post(
   "/refresh-token",
-  authorizationValidator,
   refreshTokenValidator,
   authController.refreshToken,
 );
