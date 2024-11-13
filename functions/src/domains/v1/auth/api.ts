@@ -82,7 +82,7 @@ const authApi: IAuthApi = {
     email: string,
     password: string,
   ): Promise<SignInWithEmailAndPasswordResponse> => {
-    return axios({
+    return axios<SignInWithEmailAndPasswordResponse>({
       method: "post",
       url: authEndpoints.signInWithEmailAndPassword,
       data: {
@@ -99,7 +99,7 @@ const authApi: IAuthApi = {
     password: string,
   ): Promise<SignUpWithEmailAndPasswordResponse> => {
     debugger;
-    return axios({
+    return axios<SignUpWithEmailAndPasswordResponse>({
       method: "post",
       url: authEndpoints.signUpWithEmailAndPassword,
       data: {
@@ -112,7 +112,7 @@ const authApi: IAuthApi = {
       .catch(transformGoogleApiError);
   },
   refreshToken: async (refreshToken: string): Promise<RefreshTokenResponse> => {
-    return axios({
+    return axios<RefreshTokenResponse>({
       method: "post",
       url: authEndpoints.refreshToken,
       data: {
