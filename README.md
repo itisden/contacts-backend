@@ -9,7 +9,9 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
 - [Setup](#setup)
 - [API Endpoints](#api-endpoints)
 - [Running Locally](#running-locally)
+- [Testing](#testing)
 - [Deployment](#deployment)
+- [Linting](#linting)
 - [Notes](#notes)
 
 ## Features
@@ -25,6 +27,7 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
 
 - **Firebase Functions**: Serverless functions for handling HTTP requests.
 - **Firestore**: Database for storing contact data.
+- **Firestore authentication**: provides backend services to help authenticate users in your application
 - **Node.js**: JavaScript runtime.
 - **Express**: Middleware for routing.
 
@@ -45,28 +48,32 @@ A simple CRUD (Create, Read, Update, Delete) API for managing contacts, built wi
    npm install
    ```
 
-3. **Set up Firebase CLI if you haven’t already:**
+3. **Setup environment variables:**
 
    ```bash
-   npx firebase login
-   npx firebase init
+   cp .env.example .env.local
    ```
 
-4. **Initialize Firestore in Firebase:**
-   Ensure Firestore is enabled in your Firebase project, as it’s used for contact storage.
+4. **Run the functions locally:**
+   When running the project locally, it uses the `demo-contacts` project ID for local development.
+
+   ```bash
+   npm run serve
+   ```
 
 ## API Endpoints
 
-Method Endpoint Description
-
-| Method | Endpoint               | Description                     |
-| ------ | ---------------------- | ------------------------------- |
-| GET    | **`/status`**          | Check API status                |
-| GET    | **`/v1/contacts`**     | Retrieve all contacts           |
-| GET    | **`/v1/contacts/:id`** | Retrieve a single contact by ID |
-| POST   | **`/v1/contacts`**     | Create a new contact            |
-| PUT    | **`/v1/contacts/:id`** | Update an existing contact      |
-| DELETE | **`/v1/contacts/:id`** | Delete a contact                |
+| Method | Endpoint                     | Description                     |
+| ------ | ---------------------------- | ------------------------------- |
+| GET    | **`/status`**                | Check API status                |
+| GET    | **`/v1/contacts`**           | Retrieve all contacts           |
+| GET    | **`/v1/contacts/:id`**       | Retrieve a single contact by ID |
+| POST   | **`/v1/contacts`**           | Create a new contact            |
+| PUT    | **`/v1/contacts/:id`**       | Update an existing contact      |
+| DELETE | **`/v1/contacts/:id`**       | Delete a contact                |
+| POST   | **`/v1/auth/signup`**        | Register a new user             |
+| POST   | **`/v1/auth/signin`**        | Login a user                    |
+| GET    | **`/v1/auth/refresh-token`** | Refresh token                   |
 
 ## Running Locally
 
@@ -74,11 +81,36 @@ To run the functions locally:
 
     npm run serve
 
+## Testing
+
+Before running the tests, ensure you have a `.env.test` file in the `functions` folder with the necessary environment variables. To run the tests:
+
+```bash
+# Run tests without emulator
+npm run test
+
+# Run tests with watch mode
+npm run test:watch
+
+# Run tests with Firebase emulators
+npm run test:emulator
+```
+
 ## Deployment
 
 To deploy the functions:
 
     npm run deploy
+
+## Linting
+
+To maintain code quality, linting is set up using ESLint. To run the linter and check for any issues, use the following command:
+
+```bash
+npm run lint
+```
+
+To automatically fix linting errors, you can run:
 
 ## Notes
 
