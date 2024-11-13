@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import AuthService from "@/domains/v1/auth/service";
+import { IAuthService } from "@/domains/v1/auth/types";
 
 class AuthController {
-  private authService: AuthService;
+  private authService: IAuthService;
 
-  constructor(authService: AuthService) {
+  constructor(authService: IAuthService) {
     this.authService = authService;
 
     this.signIn = this.signIn.bind(this);
