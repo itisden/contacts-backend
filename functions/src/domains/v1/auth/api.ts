@@ -98,7 +98,6 @@ const authApi: IAuthApi = {
     email: string,
     password: string,
   ): Promise<SignUpWithEmailAndPasswordResponse> => {
-    debugger;
     return axios<SignUpWithEmailAndPasswordResponse>({
       method: "post",
       url: authEndpoints.signUpWithEmailAndPassword,
